@@ -16,21 +16,10 @@ const happy = true;
 const finished = true;
 const goal = 3;
 
-const skillColor = "navy";
+const skillColor = "crimson";
 const fontWeight = "bold";
 const textCase = "uppercase";
 ---
-<style define:vars={{skillColor, fontWeight, textCase}}>
-	h1 {
-		color: purple;
-		font-size: 4rem;
-	}
-	.skill {
-		color: var(--skillColor);
-		font-weight: var(--fontWeight);
-		text-transform: var(--textCase);
-	}
-</style>
 <BaseLayout pageTitle={pageTitle}>
 	<h2>... and my personal website.</h2>
 	<p>Here are a few facts about me:</p>
@@ -51,4 +40,10 @@ const textCase = "uppercase";
 
 	{goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
 </BaseLayout>
-
+<style define:vars={{skillColor, fontWeight, textCase}}>
+	.skill {
+		color: var(--skillColor);
+		font-weight: var(--fontWeight);
+		text-transform: var(--textCase);
+	}
+</style>
