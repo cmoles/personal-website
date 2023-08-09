@@ -18,4 +18,4 @@ Haven't played with it too much, but I love its simplicity with static content
 using Markdown and its ability to use React components for dynamic content.
 
 The source code for this site is available on
-[GitHub](github.com/cmoles/personal-website). Have fun!
+[GitHub](https://github.com/cmoles/personal-website). Have fun!
