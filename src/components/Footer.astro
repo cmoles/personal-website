@@ -1,14 +1,14 @@
 ---
-import Social from './Social.astro'
+const today = new Date();
 ---
 <style>
   footer {
     display: flex;
     gap: 1rem;
-    margin-top: 2rem;
+	padding: 3em 1em 6em 1em;
   }
 </style>
 
 <footer>
-	<Social platform="github" username="cmoles" />
+	&copy; {today.getFullYear()} Chris Moles. All rights reserved.
 </footer>
