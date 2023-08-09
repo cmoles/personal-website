@@ -3,7 +3,8 @@ layout: '../layouts/MarkdownPageLayout.astro'
 title: About Me
 ---
 
-## ... and my personal website
+> ... and my wonderful,
+> personal website
 
 ### About Me
 
