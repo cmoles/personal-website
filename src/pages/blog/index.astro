@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogPost from '../../components/BlogPost.astro';
 import { getCollection } from 'astro:content';
 
-const pageTitle = "The Chris Moles Programming Blog";
+const pageTitle = "My Programming Blog";
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );

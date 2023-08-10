@@ -1,6 +1,6 @@
 ---
 layout: "../layouts/MarkdownPageLayout.astro"
-title: "Home Page"
+title: The Chris Moles Website
 ---
 
 > Welcome to my wonderful,
@@ -8,6 +8,14 @@ title: "Home Page"
 
 ### August News
 
-- Launched the new website.
-- Currently working on a new video game.
+- [Launched this cool website.](/blog/welcome-to-my-website) 😎
 
+### Upcoming Events
+
+- New video game on the way. 🎮
+
+- New machine learning project in the works. 🤖
+
+- New web components are coming soon. 🧩
+
+> Enjoy your stay!
