@@ -24,6 +24,6 @@ const { posts } = Astro.props;
   <main>
 	  {posts.map((post:any) => <BlogPost url={`/blog/${post.slug}/`} title={post.data.title}
 		pubDate={post.data.pubDate}
-		updateDate={post.data.updatedDate} /></a></li>)}
+		updatedDate={post.data.updatedDate} /></a></li>)}
   </main>
 </BaseLayout>
