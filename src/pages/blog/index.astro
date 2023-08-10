@@ -1,9 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogPost from '../../components/BlogPost.astro';
-//import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import { getCollection } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
 
 const pageTitle = "The Chris Moles Programming Blog";
 const posts = (await getCollection('blog')).sort(
@@ -11,11 +9,16 @@ const posts = (await getCollection('blog')).sort(
 );
 ---
 <BaseLayout pageTitle={pageTitle}>
-	<p>This is where I will post about programming.</p>
-	<ul>
+	<main>
+		<p>This is where I will post about programming.</p>
 		{posts.map((post) => 
-		<BlogPost url={`/blog/${post.slug}/`} title={post.data.title} />
+		<BlogPost
+		url={`/blog/${post.slug}/`}
+		title={post.data.title}
+		pubDate={post.data.pubDate}
+		updatedDate={post.data.updatedDate}
+		/>
 		)}
-	</ul>
+	</main>
 </BaseLayout>
 

@@ -1,4 +1,16 @@
 ---
-const { title, url } = Astro.props
+import FormattedDate from '../components/FormattedDate.astro';
+
+const { title, url, pubDate, updatedDate } = Astro.props
 ---
-<li><a href={url}>{title}</a></li>
+<article>
+	<ul>
+		<li><a href={url}>{title}</a></li>
+		<li><FormattedDate date={pubDate} /></li>
+			{ updatedDate &&
+				<li>
+					Last updated on <FormattedDate date={updatedDate} />
+				</li>
+			}
+	<ul>
+</article>
