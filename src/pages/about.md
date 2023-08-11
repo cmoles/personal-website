@@ -39,10 +39,10 @@ I'm also familiar with a number of other technologies, including:
 
 I'm always looking for new opportunities to learn and grow as a developer. If
 you're interested in working with me, please feel free to reach out to me on 
-[LinkedIn](https://www.linkedin.com/in/chris-moles-41a025188/).
+[LinkedIn](//www.linkedin.com/in/chris-moles-41a025188/).
 
 ### About My Personal Website
 
-This site is built with [Astro](https://astro.build/), a static site generator,
-and hosted on [Netlify](https://www.netlify.com/). The source code for this site
-is available on [GitHub](https://www.github.com/cmoles/personal-website).
+This site is built with [Astro](//astro.build/), a static site generator,
+and hosted on [Netlify](//www.netlify.com/). The source code for this site
+is available on [GitHub](//www.github.com/cmoles/personal-website).
