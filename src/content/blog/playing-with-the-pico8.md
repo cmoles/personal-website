@@ -1,6 +1,6 @@
 ---
-title: 'Playing with Pico-8'
-pubDate: 2023-08-09
+title: 'Playing with the Pico-8'
+pubDate: '2023-08-09'
 description: 'Combining my love of retro games with my love of programming.'
 author: 'Chris Moles'
 tags: ["pico-8", "game-development", "lua"]

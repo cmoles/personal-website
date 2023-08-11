@@ -1,6 +1,6 @@
 ---
 title: 'Welcome to my Website'
-pubDate: '2023-08-09'
+pubDate: '2023-08-08'
 updatedDate: '2023-08-09'
 description: 'This is the first post of my new personal website.'
 author: 'Chris Moles'

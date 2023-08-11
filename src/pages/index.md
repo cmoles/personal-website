@@ -10,6 +10,8 @@ title: The Chris Moles Website
 
 - [Launched this cool website.](/blog/welcome-to-my-website) 😎
 
+- [Added a blog section.](/blog) 📝
+
 ### Upcoming Events
 
 - New video game on the way. 🎮
