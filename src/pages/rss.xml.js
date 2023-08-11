@@ -2,7 +2,9 @@ import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 
 export async function get() {
-	const blog = await getCollection('blog');
+	const blog = (await getCollection('blog'))
+		.filter((post) => !post.data.draft);
+
 	return rss({
 		title: 'Chris Moles | Blog',
 		description: 'My wonderful, personal website.',
