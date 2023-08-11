@@ -1,7 +1,7 @@
 ---
 title: 'Draft Mode'
 pubDate: '2023-08-10'
-draft: true
+draft: false
 description: 'Adding a draft mode to my blog.'
 author: 'Chris Moles'
 tags: ["website"]
