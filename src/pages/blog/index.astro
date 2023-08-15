@@ -12,14 +12,13 @@ const posts = (await getCollection('blog'))
 ---
 <BaseLayout pageTitle={pageTitle}>
 	<main>
-		<p>This is where I will post about programming.</p>
 		{posts.map((post) => 
-		<BlogPost
-		url={`/blog/${post.slug}/`}
-		title={post.data.title}
-		pubDate={post.data.pubDate}
-		updatedDate={post.data.updatedDate}
-		/>
+			<BlogPost
+			url={`/blog/${post.slug}/`}
+			title={post.data.title}
+			pubDate={post.data.pubDate}
+			updatedDate={post.data.updatedDate}
+			/>
 		)}
 	</main>
 </BaseLayout>

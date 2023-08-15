@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GamePost from '../../components/GamePost.astro';
+import { getCollection } from 'astro:content';
+
+const pageTitle = "My Pico-8 Games";
+const games = (await getCollection('games'))
+	.filter((game) => !game.data.draft)
+	.sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+<BaseLayout pageTitle={pageTitle}>
+	<main>
+		{games.map((game) => 
+			<GamePost
+			url={`/games/${game.slug}/`}
+			title={game.data.title}
+			pubDate={game.data.pubDate}
+			updatedDate={game.data.updatedDate}
+			/>
+		)}
+	</main>
+</BaseLayout>
+

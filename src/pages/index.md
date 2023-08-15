@@ -12,9 +12,9 @@ title: The Chris Moles Website
 
 - [Added a blog section.](/blog) 📝
 
-### Upcoming Events
+- [Added a video game section.](/games) 🎮
 
-- New video game on the way. 🎮
+### Upcoming Events
 
 - New machine learning project in the works. 🤖
 
