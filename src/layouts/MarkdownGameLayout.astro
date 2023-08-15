@@ -1,10 +1,16 @@
 ---
 import BaseLayout from './BaseLayout.astro'
 import { Pico8Player } from '../components/Pico8Player.jsx'
-const { title, description, cart, placeholder } = Astro.props;
+const { title, description, cart, placeholder, link } = Astro.props;
 ---
 <BaseLayout pageTitle={title}>
 	<p><em>{description}</em></p>
-	<Pico8Player src={"/carts/"+cart} placeholder={placeholder} client:only="react" />
+	<main>
+		<Pico8Player
+				src={"/carts/"+cart}
+				placeholder={placeholder}
+				link={link}
+				client:only="react" />
+	</main>
 	<slot />
 </BaseLayout>

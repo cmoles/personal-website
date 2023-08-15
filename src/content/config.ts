@@ -40,6 +40,7 @@ const games = defineCollection({
 			.optional()
 			.transform((str) => (str ? new Date(str+'PST') : undefined)),
 		placeholder: z.string().optional(),
+		link: z.string(),
 	}),
 });
 

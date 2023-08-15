@@ -5,9 +5,7 @@ import { getCollection } from 'astro:content';
 
 const pageTitle = "My Pico-8 Games";
 const games = (await getCollection('games'))
-	.filter((game) => !game.data.draft)
-	.sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
 <BaseLayout pageTitle={pageTitle}>

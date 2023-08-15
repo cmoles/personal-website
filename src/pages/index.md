@@ -12,9 +12,11 @@ title: The Chris Moles Website
 
 - [Added a blog section.](/blog) 📝
 
-- [Added a video game section.](/games) 🎮
+- [Added a video game section.](/games) 👾
 
 ### Upcoming Events
+
+- Mobile controls for my Pico-8 games. 🕹️
 
 - New machine learning project in the works. 🤖
 
