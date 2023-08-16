@@ -65,7 +65,6 @@ And by adding a few lines to a Markdown file, I can host a game on my website:
 ```markdown
 ---
 title: Ghost Hunter
-layout: MarkdownGameLayout.astro
 cart: ghost-hunter.js
 ---
 
