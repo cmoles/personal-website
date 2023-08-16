@@ -7,7 +7,7 @@ const { title, description, cart, placeholder, link } = Astro.props;
 	<p><em>{description}</em></p>
 	<main>
 		<Pico8Player
-				src={"/carts/"+cart}
+				cart={"/carts/"+cart}
 				placeholder={placeholder}
 				link={link}
 				client:only="react" />

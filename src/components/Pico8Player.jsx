@@ -9,15 +9,15 @@ import { Controls,
 import 'react-pico-8/styles.css'
 import {isMobile} from 'react-device-detect';
 
-export const Pico8Player = ({src,placeholder,link}) => {
+export const Pico8Player = ({cart,placeholder}) => {
 
 	if (isMobile) {
 		return (
-			<a href={link}>Visit Itch.io to play on mobile.</a>
+			<a href={cart+".html"}>Click here to play on mobile.</a>
 		)
 	}
 	return (
-		<Pico8 src={src}
+		<Pico8 src={cart+".js"}
 				autoPlay={true}
 				legacyButtons={false}
 				hideCursor={false}
@@ -31,7 +31,6 @@ export const Pico8Player = ({src,placeholder,link}) => {
 			<Reset/>
 			<Pause/>
 			<Sound/>
-			<Carts/>
 			<Fullscreen/>
 		</Pico8>
 	)
