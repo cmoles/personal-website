@@ -50,7 +50,7 @@ Call the template from the Astro directory:
 
 ```astro
 ---
-import MarkdownGameLayout from './layouts/MarkdownGameLayout.astro'
+import GamePost from './layouts/MarkdownGameLayout.astro'
 //...
 const game = Astro.props;
 const { Content } = await game.render();
