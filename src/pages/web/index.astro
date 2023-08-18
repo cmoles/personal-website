@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WebPost from '../../components/WebPost.astro';
+import { getCollection } from 'astro:content';
+
+const pageTitle = "My Web Components";
+const projects = (await getCollection('web'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+<BaseLayout pageTitle={pageTitle}>
+	<main>
+		{projects.map((project) => 
+			<WebPost
+			url={`/web/${project.slug}/`}
+			title={project.data.title}
+			pubDate={project.data.pubDate}
+			updatedDate={project.data.updatedDate}
+			/>
+		)}
+	</main>
+</BaseLayout>
+

@@ -1,0 +1,13 @@
+---
+import BaseLayout from './BaseLayout.astro'
+import type { CollectionEntry } from 'astro:content';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, tags, heroImage } = Astro.props;
+
+---
+<BaseLayout pageTitle={title}>
+	<p><em>{description}</em></p>
+	<slot />
+</BaseLayout>
