@@ -1,9 +1,15 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-const allPosts = await Astro.glob('../../content/blog/*.md');
-const tags = [...new Set(allPosts
+const allBlogPosts = await Astro.glob('../../content/blog/*.md');
+const allAIPosts = await Astro.glob('../../content/ai/*.md');
+const tags = [...new Set([
+	...allBlogPosts
 	.filter((post) => !post.frontmatter.draft)
-	.map((post) => post.frontmatter.tags).flat())]
+	.map((post) => post.frontmatter.tags).flat(),
+	...allAIPosts
+	.filter((post) => !post.frontmatter.draft)
+	.map((post) => post.frontmatter.tags).flat()
+])]
 const pageTitle = "Tag Index";
 ---
 <BaseLayout pageTitle={pageTitle}>

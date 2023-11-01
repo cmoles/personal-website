@@ -4,27 +4,40 @@ import BlogPost from '../../components/BlogPost.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-	const allPosts = await getCollection('blog');
-	const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+	const allBlogPosts = await getCollection('blog');
+	const allAIPosts = await getCollection('ai');
+	const uniqueTags = [...new Set([
+	...allBlogPosts.map((post) => post.data.tags).flat(),
+	...allAIPosts.map((post) => post.data.tags).flat(),
+	])];
 
 	return uniqueTags.map((tag) => {
-		const filteredPosts = allPosts
+		const filteredBlogPosts = allBlogPosts
+		.filter((post) => !post.data.draft)
+		.filter((post) => post.data.tags?.includes(tag));
+		const filteredAIPosts = allAIPosts
 		.filter((post) => !post.data.draft)
 		.filter((post) => post.data.tags?.includes(tag));
 		return {
 			params: { tag },
-			props: { posts: filteredPosts },
+			props: { posts: { blogPosts: filteredBlogPosts, aiPosts: filteredAIPosts } },
 		};
 	});
 }
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
+const { blogPosts, aiPosts } = posts;
 ---
 <BaseLayout pageTitle={tag}>
   <p>Posts tagged with {tag}</p>
   <main>
-	  {posts.map((post:any) => <BlogPost url={`/blog/${post.slug}/`} title={post.data.title}
+	  {blogPosts.length > 0 && <h2>Blog</h2>}
+	  {blogPosts.map((post:any) => <BlogPost url={`/blog/${post.slug}/`} title={post.data.title}
+		pubDate={post.data.pubDate}
+		updatedDate={post.data.updatedDate} /></a></li>)}
+	  {aiPosts.length > 0 && <h2>AI</h2>}
+	  {aiPosts.map((post:any) => <BlogPost url={`/ai/${post.slug}/`} title={post.data.title}
 		pubDate={post.data.pubDate}
 		updatedDate={post.data.updatedDate} /></a></li>)}
   </main>
