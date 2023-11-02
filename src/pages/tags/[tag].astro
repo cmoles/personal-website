@@ -6,39 +6,80 @@ import { getCollection } from 'astro:content';
 export async function getStaticPaths() {
 	const allBlogPosts = await getCollection('blog');
 	const allAIPosts = await getCollection('ai');
+	const allWebPosts = await getCollection('web');
+	const allGamePosts = await getCollection('games');
 	const uniqueTags = [...new Set([
-	...allBlogPosts.map((post) => post.data.tags).flat(),
-	...allAIPosts.map((post) => post.data.tags).flat(),
+	...allBlogPosts
+	.filter((post) => post.data.tags?.length > 0)
+	.map((post) => post.data.tags)?.flat(),
+	...allAIPosts
+	.filter((post) => post.data.tags?.length > 0)
+	.map((post) => post.data.tags)?.flat(),
+	...allWebPosts
+	.filter((post) => post.data.tags?.length > 0)
+	.map((post) => post.data.tags)?.flat(),
+	...allGamePosts
+	.filter((post) => post.data.tags?.length > 0)
+	.map((post) => post.data.tags)?.flat(),
 	])];
 
 	return uniqueTags.map((tag) => {
 		const filteredBlogPosts = allBlogPosts
+		.filter((post) => post.data.tags?.length > 0)
 		.filter((post) => !post.data.draft)
 		.filter((post) => post.data.tags?.includes(tag));
 		const filteredAIPosts = allAIPosts
+		.filter((post) => post.data.tags?.length > 0)
 		.filter((post) => !post.data.draft)
+		.filter((post) => post.data.tags?.includes(tag));
+		const filteredWebPosts = allWebPosts
+		.filter((post) => post.data.tags?.length > 0)
+		.filter((post) => post.data.tags?.includes(tag));
+		const filteredGamePosts = allGamePosts
+		.filter((post) => post.data.tags?.length > 0)
 		.filter((post) => post.data.tags?.includes(tag));
 		return {
 			params: { tag },
-			props: { posts: { blogPosts: filteredBlogPosts, aiPosts: filteredAIPosts } },
+			props: { posts: {
+				blogPosts: filteredBlogPosts,
+				aiPosts: filteredAIPosts,
+				webPosts: filteredWebPosts,
+				gamePosts: filteredGamePosts
+			} },
 		};
 	});
 }
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
-const { blogPosts, aiPosts } = posts;
+const { blogPosts, aiPosts, webPosts, gamePosts } = posts;
 ---
 <BaseLayout pageTitle={tag}>
   <p>Posts tagged with {tag}</p>
   <main>
 	  {blogPosts.length > 0 && <h2>Blog</h2>}
-	  {blogPosts.map((post:any) => <BlogPost url={`/blog/${post.slug}/`} title={post.data.title}
+	  {blogPosts
+	  .sort((a:any, b:any) => b.data.pubDate - a.data.pubDate)
+	  .map((post:any) => <BlogPost url={`/blog/${post.slug}/`} title={post.data.title}
 		pubDate={post.data.pubDate}
-		updatedDate={post.data.updatedDate} /></a></li>)}
+		updatedDate={post.data.updatedDate} />)}
 	  {aiPosts.length > 0 && <h2>AI</h2>}
-	  {aiPosts.map((post:any) => <BlogPost url={`/ai/${post.slug}/`} title={post.data.title}
+	  {aiPosts
+	  .sort((a:any, b:any) => b.data.pubDate - a.data.pubDate)
+	  .map((post:any) => <BlogPost url={`/ai/${post.slug}/`} title={post.data.title}
 		pubDate={post.data.pubDate}
-		updatedDate={post.data.updatedDate} /></a></li>)}
+		updatedDate={post.data.updatedDate} />)}
+	  {webPosts.length > 0 && <h2>Web</h2>}
+	  {webPosts
+	  .sort((a:any, b:any) => b.data.pubDate - a.data.pubDate)
+	  .map((post:any) => <BlogPost url={`/web/${post.slug}/`} title={post.data.title}
+		pubDate={post.data.pubDate}
+		updatedDate={post.data.updatedDate} />)}
+	  {gamePosts.length > 0 && <h2>Games</h2>}
+	  {gamePosts
+	  .sort((a:any, b:any) => b.data.pubDate - a.data.pubDate)
+	  .map((post:any) => <BlogPost url={`/games/${post.slug}/`} title={post.data.title}
+		pubDate={post.data.pubDate}
+		updatedDate={post.data.updatedDate} />)}
   </main>
 </BaseLayout>

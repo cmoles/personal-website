@@ -63,6 +63,7 @@ const games = defineCollection({
 			.transform((str) => (str ? new Date(str+'PST') : undefined)),
 		placeholder: z.string().optional(),
 		link: z.string().optional(),
+		tags: z.array(z.string()).optional(),
 	}),
 });
 
@@ -81,6 +82,7 @@ const web = defineCollection({
 			.string()
 			.optional()
 			.transform((str) => (str ? new Date(str+'PST') : undefined)),
+		tags: z.array(z.string()).optional(),
 	}),
 });
 
