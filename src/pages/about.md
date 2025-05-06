@@ -8,38 +8,39 @@ title: About Me
 
 ### About Me, Personally
 
-My name is Chris Moles. I'm a software engineer living in sunny San Diego, CA.
-My main focus is in web development, but I also enjoy experimenting with machine
-learning and video game development.
+My name is Chris Moles. I'm a software engineer living in Lafayette, Louisiana.
+My main focus is in full stack development, with particular expertise in Python
+and C#. When I'm not coding, you might find me creating Pico-8 games or playing
+the guitar, ukulele, or synths.
 
 ### About Me, Professionally
 
-I'm a software engineer for hire. I have experience with a wide range of web
-technologies, including: 
+I'm a Senior Software Engineer / Data Developer with a passion for architecting
+and implementing efficient data solutions for business-critical applications. 
+My technical expertise includes:
 
-- Angular
-- React
-- C#
-- DotNet
-- Node
-- Express
-- MSSQL
-- MongoDB
-- AWS
+- **Core Technologies:** C#, .NET Core, Python, SQL (T-SQL, MySQL, PostgreSQL)
+- **Cloud & Infrastructure:** AWS, Docker, Linux
+- **Web & APIs:** ASP.NET, REST APIs, Flask, Django
+- **Data Management:** SQLAlchemy, ADO.NET, Entity Framework, MongoDB
+- **DevOps & Collaboration:** Git, Jira, Agile, CI/CD, Jenkins
 
-I'm also familiar with a number of other technologies, including:
+### Technical Background
 
-- Python
-- Java
-- C++
-- Unity
-- Tensorflow
-- Lua
-- Pico-8
+I earned my Bachelor of Science in Electrical Engineering from the University of
+Texas at Austin, with a focus on Image and Signal Processing, and Robotics and Controls.
 
-I'm always looking for new opportunities to learn and grow as a developer. If
-you're interested in working with me, please feel free to reach out to me on 
-[LinkedIn](//www.linkedin.com/in/chris-moles-41a025188/).
+My career spans multiple industries including fintech, political technology, satellite
+tracking, and electrical construction, where I've consistently delivered robust
+solutions with a focus on reliability and performance.
+
+### Connect With Me
+
+I'm currently exploring new opportunities where I can leverage my data development
+and software engineering expertise. Feel free to reach out to me at:
+
+- 📧 cmoles@gmail.com
+- [LinkedIn](//www.linkedin.com/in/chris-moles-41a025188/)
 
 ### About My Personal Website
 
