@@ -19,11 +19,11 @@ I'm a Senior Software Engineer / Data Developer with a passion for architecting
 and implementing efficient data solutions for business-critical applications. 
 My technical expertise includes:
 
-- **Core Technologies:** C#, .NET Core, Python, SQL (T-SQL, MySQL, PostgreSQL)
-- **Cloud & Infrastructure:** AWS, Docker, Linux
-- **Web & APIs:** ASP.NET, REST APIs, Flask, Django
-- **Data Management:** SQLAlchemy, ADO.NET, Entity Framework, MongoDB
-- **DevOps & Collaboration:** Git, Jira, Agile, CI/CD, Jenkins
+- 💻 **Core Technologies:** C#, .NET Core, Python, SQL (T-SQL, MySQL, PostgreSQL)
+- ☁️ **Cloud & Infrastructure:** AWS, Docker, Linux
+- 🌐 **Web & APIs:** ASP.NET, REST APIs, Flask, Django
+- 📊 **Data Management:** SQLAlchemy, ADO.NET, Entity Framework, MongoDB
+- 🔄 **DevOps & Collaboration:** Git, Jira, Agile, CI/CD, Jenkins
 
 ### Technical Background
 

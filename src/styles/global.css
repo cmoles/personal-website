@@ -12,7 +12,9 @@ html {
 
 	background-color: var(--background-color);
 	font-family: sans-serif;
-	color: var(--primary-color)
+	color: var(--primary-color);
+
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
