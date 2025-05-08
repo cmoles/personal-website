@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout pageTitle="Authentication Callback">
+  <div>Processing login...</div>
+</BaseLayout>
+
+<script>
+  import { initAuth0, handleCallback } from '../lib/auth';
+  
+  // Handle the Auth0 callback
+  window.addEventListener('DOMContentLoaded', async () => {
+    try {
+      console.log('Starting callback handling...');
+      // Initialize Auth0 first
+      await initAuth0();
+      console.log('Auth0 initialized');
+      
+      // Check if we're in a callback
+      const searchParams = new URLSearchParams(window.location.search);
+      if (searchParams.has('code') && searchParams.has('state')) {
+        console.log('Found callback parameters');
+        await handleCallback();
+        console.log('Callback handled successfully, redirecting to dashboard...');
+      } else {
+        console.error('No callback parameters found');
+        window.location.replace('/');
+      }
+    } catch (error) {
+      console.error('Authentication error:', error);
+      window.location.replace('/');
+    }
+  });
+</script>

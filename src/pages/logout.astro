@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout pageTitle="Logging Out">
+  <div class="logout-container">
+    <div class="logout-card">
+      <h1>Logging Out</h1>
+      <p>Please wait while we log you out...</p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .logout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 2rem;
+  }
+  
+  .logout-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 3rem;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  h1 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  p {
+    color: #666;
+  }
+</style>
+
+<script>
+  import { initAuth0, logout } from '../lib/auth';
+  
+  window.addEventListener('DOMContentLoaded', async () => {
+    try {
+      console.log('Initializing Auth0 for logout...');
+      await initAuth0();
+      console.log('Auth0 initialized, proceeding with logout...');
+      await logout();
+      console.log('Logout successful');
+    } catch (error) {
+      console.error('Logout error:', error);
+      window.location.replace('/');
+    }
+  });
+</script> 

@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ControlPanel from '../components/ControlPanel';
+import LoginButton from '../components/LoginButton';
+import LogoutButton from '../components/LogoutButton';
+---
+
+<BaseLayout pageTitle="GPU Control Panel">
+  <div id="control-panel-container">
+    <!-- Control panel will render here once authenticated -->
+  </div>
+</BaseLayout>
+
+<script>
+  import { initAuth0, isAuthenticated } from '../lib/auth';
+  import { h, render } from 'preact';
+  import ControlPanel from '../components/ControlPanel';
+  
+  window.addEventListener('DOMContentLoaded', async () => {
+    try {
+      await initAuth0();
+      const authenticated = await isAuthenticated();
+      
+      if (authenticated) {
+        const container = document.getElementById('control-panel-container');
+        if (container) {
+          render(h(ControlPanel, {}), container as HTMLElement);
+        }
+      } else {
+        window.location.replace('/');
+      }
+    } catch (error) {
+      console.error('Auth check error:', error);
+      window.location.replace('/');
+    }
+  });
+</script>
