@@ -45,7 +45,7 @@ export const handleCallback = async () => {
   try {
     await auth0Client.handleRedirectCallback();
     console.log('Redirect callback handled successfully');
-    window.location.replace('/dashboard');
+    window.location.replace('/web/gpu-server');
   } catch (error) {
     console.error('Error in handleCallback:', error);
     throw error;
@@ -55,6 +55,18 @@ export const handleCallback = async () => {
 export const logout = async () => {
   try {
     console.log('Starting logout process...');
+    
+    if (!auth0Client) {
+      console.log('Auth0 client not initialized, initializing now...');
+      await initAuth0();
+    }
+    
+    // Use Auth0's logout method
+    await auth0Client.logout({
+      logoutParams: {
+        returnTo: window.location.origin
+      }
+    });
     
     // Clear all Auth0 related items from localStorage
     const keys = Object.keys(localStorage);
@@ -74,7 +86,7 @@ export const logout = async () => {
         .replace(/=.*/, `=;expires=${new Date(0).toUTCString()};path=/`);
     });
     
-    console.log('Local logout complete, redirecting to home...');
+    console.log('Logout complete, redirecting to home...');
     window.location.href = '/';
   } catch (error) {
     console.error('Error during logout:', error);

@@ -48,8 +48,6 @@ export default function ControlPanel() {
   
   return (
     <div>
-      <h1>GPU Instance Control Panel</h1>
-      
       {status ? (
         <div>
           <p>Status: {status.state}</p>
