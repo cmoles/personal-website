@@ -4,6 +4,7 @@ import ControlPanel from './ControlPanel';
 
 export default function AuthWrapper() {
   const [isReady, setIsReady] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -12,13 +13,14 @@ export default function AuthWrapper() {
         const authenticated = await isAuthenticated();
         
         if (!authenticated) {
-          window.location.replace('/');
+          setIsReady(true);
+          setIsAuth(false);
         } else {
           setIsReady(true);
+          setIsAuth(true);
         }
       } catch (error) {
         console.error('Auth check error:', error);
-        window.location.replace('/');
       }
     };
     
@@ -29,5 +31,16 @@ export default function AuthWrapper() {
     return <div>Loading...</div>;
   }
 
-  return <ControlPanel />;
+  if (!isAuth) {
+    return <div>
+      <button 
+        onClick={() => window.location.href = '/login'}
+        className="login-button"
+      >
+        Log In
+    </button>
+  </div>;
+  }
+
+  return <div><ControlPanel /></div>;
 } 

@@ -48,6 +48,13 @@ export default function ControlPanel() {
   
   return (
     <div>
+      <button 
+        onClick={() => window.location.href = '/logout'}
+        disabled={status?.state !== 'stopped'}
+        className="logout-button"
+      >
+        Log Out
+      </button>
       {status ? (
         <div>
           <p>Status: {status.state}</p>
