@@ -12,7 +12,7 @@ export const initAuth0 = async () => {
       authorizationParams: {
         audience: 'https://9lo9v20q31.execute-api.us-west-2.amazonaws.com/',
         redirect_uri: window.location.origin + '/callback',
-        scope: 'openid profile email'
+        scope: 'openid profile email offline_access'
       },
       cacheLocation: 'localstorage',
       useRefreshTokens: true
@@ -95,9 +95,32 @@ export const logout = async () => {
 };
 
 export const getToken = async () => {
-  return await auth0Client.getTokenSilently();
+  try {
+    return await auth0Client.getTokenSilently({
+      detailedResponse: true,
+      timeoutInSeconds: 10
+    });
+  } catch (error) {
+    console.error('Error getting token:', error);
+    // If token refresh fails, redirect to login
+    if (error.error === 'login_required') {
+      await login();
+    }
+    throw error;
+  }
 };
 
 export const isAuthenticated = async () => {
-  return await auth0Client.isAuthenticated();
+  try {
+    const isAuth = await auth0Client.isAuthenticated();
+    if (isAuth) {
+      // Verify we can actually get a token
+      await getToken();
+      return true;
+    }
+    return false;
+  } catch (error) {
+    console.error('Error checking authentication:', error);
+    return false;
+  }
 };
