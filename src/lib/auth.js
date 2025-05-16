@@ -96,10 +96,11 @@ export const logout = async () => {
 
 export const getToken = async () => {
   try {
-    return await auth0Client.getTokenSilently({
+    const response = await auth0Client.getTokenSilently({
       detailedResponse: true,
       timeoutInSeconds: 10
     });
+    return response.access_token;
   } catch (error) {
     console.error('Error getting token:', error);
     // If token refresh fails, redirect to login
