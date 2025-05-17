@@ -4,20 +4,66 @@ import GamePost from '../../components/GamePost.astro';
 import { getCollection } from 'astro:content';
 
 const pageTitle = "My Pico-8 Games";
-const games = (await getCollection('games'))
+const featuredGames = (await getCollection('games'))
+  .filter((game) => game.data.featured === true)
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+const inProgressGames = (await getCollection('games'))
+  .filter((game) => game.data.inProgress === true)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const otherGames = (await getCollection('games'))
+  .filter((game) => game.data.featured !== true && game.data.inProgress !== true)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 ---
+<style>
+  main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  @media (max-width: 636px) {
+    main {
+      flex-direction: column;
+    }
+  }
+</style>
 <BaseLayout pageTitle={pageTitle}>
-	<main>
-		{games.map((game) => 
-			<GamePost
-			url={`/games/${game.slug}/`}
-			title={game.data.title}
-			pubDate={game.data.pubDate}
-			updatedDate={game.data.updatedDate}
-			/>
-		)}
+  <main>
+    <div> 
+      <h2>Featured Games</h2>
+      {featuredGames.map((game) => 
+        <GamePost
+        url={`/games/${game.slug}/`}
+        title={game.data.title}
+        pubDate={game.data.pubDate}
+        updatedDate={game.data.updatedDate}
+        />
+      )}
+    </div>
+    <div>
+      <h2>Other Games</h2>
+      {otherGames.map((game) =>
+        <GamePost
+        url={`/games/${game.slug}/`}
+        title={game.data.title}
+        pubDate={game.data.pubDate}
+        updatedDate={game.data.updatedDate}
+        />
+      )}
+    </div>
+    <div>
+      <h2>In Progress</h2>
+      {inProgressGames.map((game) =>
+        <GamePost
+        url={`/games/${game.slug}/`}
+        title={game.data.title}
+        pubDate={game.data.pubDate}
+        updatedDate={game.data.updatedDate}
+        />
+      )}
+    </div>
 	</main>
 </BaseLayout>
 

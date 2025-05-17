@@ -1,9 +1,21 @@
 ---
-import BaseLayout from './BaseLayout.astro'
-import { Pico8Player } from '../components/Pico8Player.jsx'
-const { title, description, cart, placeholder } = Astro.props;
+import BaseLayout from './BaseLayout.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import { Pico8Player } from '../components/Pico8Player.jsx';
+const { title, description, cart, placeholder, pubDate, upDate, inProgress, featured } = Astro.props;
+
+const emoji = featured && "⭐" || inProgress && "⏳" || "🕹️";
+const gameType = featured && "Featured" || inProgress && "In Progress" || "Game";
 ---
 <BaseLayout pageTitle={title}>
+  
+  <p>
+  <span title={gameType}>{emoji}</span>
+    <em>
+      <strong>Published:</strong>
+      <FormattedDate date={pubDate} />
+    </em>
+  </p>
 	<p><em>{description}</em></p>
 	<main>
 		<Pico8Player

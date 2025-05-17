@@ -2,11 +2,12 @@ html {
 	--primary-color: #4c4f69;
 	--background-color: #eff1f5;
 	--secondary-color: #209fb5;
+	--tertiary-color: #dc8a78;
 
 	--primary-color-dark: #eff1f5;
 	--background-color-dark: #4c4f69;
-	--secondary-color-dark: #209fb5;
 	--secondary-color-dark: #dc8a78;
+  --tertiary-color-dark: #209fb5;
 
 	--accent-color: #bcc0cc;
 
@@ -45,6 +46,14 @@ html.dark {
 
 a {
 	color: var(--secondary-color);
+}
+
+.dark strong {
+  color: var(--tertiary-color-dark);
+}
+
+strong {
+  color: var(--tertiary-color);
 }
 
 /* nav styles */

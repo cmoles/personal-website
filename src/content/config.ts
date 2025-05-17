@@ -64,6 +64,8 @@ const games = defineCollection({
 		placeholder: z.string().optional(),
 		link: z.string().optional(),
 		tags: z.array(z.string()).optional(),
+ 		featured: z.boolean().optional(),
+		inProgress: z.boolean().optional(),
 	}),
 });
 
