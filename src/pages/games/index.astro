@@ -19,13 +19,16 @@ const otherGames = (await getCollection('games'))
 ---
 <style>
   main {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    width: 100%;
+  }
+  main h2 {
+    text-align: center;
   }
   @media (max-width: 636px) {
     main {
-      flex-direction: column;
+      grid-template-columns: 1fr;
     }
   }
 </style>
