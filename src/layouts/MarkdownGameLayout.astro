@@ -2,10 +2,30 @@
 import BaseLayout from './BaseLayout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import { Pico8Player } from '../components/Pico8Player.jsx';
+import fs from 'fs';
+import path from 'path';
+
 const { title, description, cart, placeholder, pubDate, upDate, inProgress, featured } = Astro.props;
 
 const emoji = featured && "⭐" || inProgress && "⏳" || "🕹️";
 const gameType = featured && "Featured" || inProgress && "In Progress" || "Game";
+
+// Extract placeholder from HTML file at build time
+let extractedPlaceholder = placeholder;
+if (!placeholder && cart) {
+	try {
+		const htmlPath = path.join(process.cwd(), 'public', 'carts', `${cart}.html`);
+		const htmlContent = fs.readFileSync(htmlPath, 'utf-8');
+
+		// Look for the background image in the .p8_start_button CSS rule
+		const backgroundMatch = htmlContent.match(/\.p8_start_button\{[^}]*background:url\("(data:image\/png;base64,[^"]+)"\)/);
+		if (backgroundMatch && backgroundMatch[1]) {
+			extractedPlaceholder = backgroundMatch[1];
+		}
+	} catch (error) {
+		console.warn(`Could not extract placeholder for ${cart}:`, error.message);
+	}
+}
 ---
 <BaseLayout pageTitle={title}>
   
@@ -20,7 +40,7 @@ const gameType = featured && "Featured" || inProgress && "In Progress" || "Game"
 	<main>
 		<Pico8Player
 				cart={"/carts/"+cart}
-				placeholder={placeholder}
+				placeholder={extractedPlaceholder}
 				client:only="react" />
 	</main>
 	<slot />

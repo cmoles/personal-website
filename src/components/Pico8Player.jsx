@@ -31,7 +31,7 @@ export const MobileLink = ({cart}) => {
 	return (<></>);
 }
 
-export const Pico8Player = ({cart,placeholder}) => {
+export const Pico8Player = ({cart, placeholder}) => {
 	// Load gamepad support script
 	React.useEffect(() => {
 		const script = document.createElement('script');
