@@ -32,6 +32,20 @@ export const MobileLink = ({cart}) => {
 }
 
 export const Pico8Player = ({cart,placeholder}) => {
+	// Load gamepad support script
+	React.useEffect(() => {
+		const script = document.createElement('script');
+		script.src = '/pico8gamepad.js';
+		script.async = true;
+		document.head.appendChild(script);
+
+		return () => {
+			// Cleanup script when component unmounts
+			if (document.head.contains(script)) {
+				document.head.removeChild(script);
+			}
+		};
+	}, []);
 
 	if (isMobile) {
 		return (
