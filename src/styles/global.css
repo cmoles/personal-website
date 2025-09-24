@@ -115,3 +115,19 @@ strong {
 		display: none;
 	}
 }
+
+/* Pico8Player styling - allow container to break out of body width constraint */
+.pico8-player-container {
+	width: 100vw;
+	max-width: none;
+	position: relative;
+	left: 50%;
+	right: 50%;
+	margin-left: -50vw;
+	margin-right: -50vw;
+}
+
+/* Center the game content */
+.pico8-player-container > * {
+	margin: 0 auto;
+}

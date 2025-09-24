@@ -41,22 +41,24 @@ export const Pico8Player = ({cart,placeholder}) => {
 	return (
 		<>
 		<MobileLink cart={cart} />
-		<Pico8 src={cart+".js"}
-				autoPlay={true}
-				legacyButtons={false}
-				hideCursor={false}
-				center={true}
-				blockKeys={false}
-				usePointer={true}
-				unpauseOnReset={true}
-				placeholder={placeholder}
-		>
-			<Controls/>
-			<Reset/>
-			<Pause/>
-			<Sound/>
-			<Fullscreen/>
-		</Pico8>
+		<div className="pico8-player-container">
+			<Pico8 src={cart+".js"}
+					autoPlay={true}
+					legacyButtons={false}
+					hideCursor={false}
+					center={true}
+					blockKeys={false}
+					usePointer={true}
+					unpauseOnReset={true}
+					placeholder={placeholder}
+			>
+				<Controls/>
+				<Reset/>
+				<Pause/>
+				<Sound/>
+				<Fullscreen/>
+			</Pico8>
+		</div>
 		</>
 	)
 }
