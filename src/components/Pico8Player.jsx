@@ -9,6 +9,59 @@ import { Controls,
 import 'react-pico-8/styles.css'
 import {isMobile} from 'react-device-detect';
 
+// Custom FocusToggle button component
+const FocusToggle = () => {
+	const [requireFocus, setRequireFocus] = React.useState(() => {
+		if (typeof window !== 'undefined' && typeof window.getRequireWindowFocus === 'function') {
+			return window.getRequireWindowFocus();
+		}
+		return false;
+	});
+	const [isHovered, setIsHovered] = React.useState(false);
+
+	const handleToggle = () => {
+		if (typeof window !== 'undefined' && typeof window.toggleRequireWindowFocus === 'function') {
+			const newValue = window.toggleRequireWindowFocus();
+			setRequireFocus(newValue);
+		}
+	};
+
+	// Locked icon (when requireFocus is true)
+	const lockedIcon = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\'%3E%3Cpath d=\'M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z\'/%3E%3C/svg%3E")';
+
+	// Unlocked icon (when requireFocus is false)
+	const unlockedIcon = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\'%3E%3Cpath d=\'M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6h2c0-1.66 1.34-3 3-3s3 1.34 3 3v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z\'/%3E%3C/svg%3E")';
+
+	return (
+		<div
+			className="p8_menu_button menu left"
+			style={{
+				marginLeft: '6px',
+				padding: '4px',
+				cursor: 'pointer'
+			}}
+			onClick={handleToggle}
+			onMouseEnter={() => setIsHovered(true)}
+			onMouseLeave={() => setIsHovered(false)}
+			title={requireFocus ? "Controller locked to window focus" : "Controller unlocked (works when unfocused)"}
+		>
+			<button
+				className="mask"
+				style={{
+					background: isHovered ? '#fff' : '#64605d',
+					border: 0,
+					display: 'inline-block',
+					height: '24px',
+					width: '24px',
+					pointerEvents: 'none',
+					WebkitMaskImage: requireFocus ? lockedIcon : unlockedIcon,
+					maskImage: requireFocus ? lockedIcon : unlockedIcon
+				}}
+			/>
+		</div>
+	);
+};
+
 export const MobileLink = ({cart}) => {
 	const [mQuery, setMQuery] = React.useState({
 		matches: window.matchMedia("(max-width: 600px)").matches,
@@ -71,6 +124,7 @@ export const Pico8Player = ({cart, placeholder}) => {
 				<Pause/>
 				<Sound/>
 				<Fullscreen/>
+				<FocusToggle/>
 			</Pico8>
 		</div>
 		</>

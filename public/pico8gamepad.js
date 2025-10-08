@@ -16,6 +16,28 @@ var mapStickButtons = false;
 // How far you have to pull an analog stick before it register as a PICO-8 d-pad direction
 var stickDeadzone = 0.4;
 
+// Window focus requirement - load from localStorage or default to false
+var requireWindowFocus = (function() {
+  if (typeof localStorage !== 'undefined' && localStorage.getItem('pico8_require_focus')) {
+    return localStorage.getItem('pico8_require_focus') === 'true';
+  }
+  return false;
+})();
+
+// Function to toggle focus requirement
+function toggleRequireWindowFocus() {
+  requireWindowFocus = !requireWindowFocus;
+  if (typeof localStorage !== 'undefined') {
+    localStorage.setItem('pico8_require_focus', requireWindowFocus.toString());
+  }
+  return requireWindowFocus;
+}
+
+// Function to get current focus requirement state
+function getRequireWindowFocus() {
+  return requireWindowFocus;
+}
+
 // ====== [IMPLEMENTATION]
 
 // Array through which we'll communicate with PICO-8.
@@ -31,6 +53,13 @@ function updateGamepads() {
   // Reset the array.
   for (var p = 0; p < supportedPlayers; p++)
   	pico8_buttons[p] = 0;
+
+  // If focus is required and window is not focused, skip processing
+  if (requireWindowFocus && !document.hasFocus()) {
+    requestAnimationFrame(updateGamepads);
+    return;
+  }
+
   // Gather input from all known gamepads.
   for (var i = 0; i < gamepads.length; i++) {
   	var gp = gamepads[i];
