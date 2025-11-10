@@ -85,17 +85,25 @@ export const MobileLink = ({cart}) => {
 }
 
 export const Pico8Player = ({cart, placeholder}) => {
-	// Load gamepad support script
+	// Load gamepad and mouse support scripts
 	React.useEffect(() => {
-		const script = document.createElement('script');
-		script.src = '/pico8gamepad.js';
-		script.async = true;
-		document.head.appendChild(script);
+		const gamepadScript = document.createElement('script');
+		gamepadScript.src = '/pico8gamepad.js';
+		gamepadScript.async = true;
+		document.head.appendChild(gamepadScript);
+
+		const mouseScript = document.createElement('script');
+		mouseScript.src = '/pico8mouse.js';
+		mouseScript.async = true;
+		document.head.appendChild(mouseScript);
 
 		return () => {
-			// Cleanup script when component unmounts
-			if (document.head.contains(script)) {
-				document.head.removeChild(script);
+			// Cleanup scripts when component unmounts
+			if (document.head.contains(gamepadScript)) {
+				document.head.removeChild(gamepadScript);
+			}
+			if (document.head.contains(mouseScript)) {
+				document.head.removeChild(mouseScript);
 			}
 		};
 	}, []);
@@ -114,7 +122,7 @@ export const Pico8Player = ({cart, placeholder}) => {
 					legacyButtons={false}
 					hideCursor={false}
 					center={true}
-					blockKeys={false}
+					blockKeys={true}
 					usePointer={true}
 					unpauseOnReset={true}
 					placeholder={placeholder}
