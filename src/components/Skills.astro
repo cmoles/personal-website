@@ -1,0 +1,56 @@
+---
+type SkillItem = string | { text: string; href: string };
+
+const categories: { name: string; items: SkillItem[] }[] = [
+	{ name: "Full Stack", items: [
+		{ text: "TypeScript", href: "/tags/typescript" }, "JavaScript",
+		{ text: "React", href: "/tags/react" }, { text: "Angular", href: "/tags/angular" },
+		"Node.js", { text: "C#/.NET", href: "/tags/csharp" }, { text: "Python", href: "/tags/python" },
+	]},
+	{ name: "Backend & APIs", items: [
+		"REST", "Express", { text: "FastAPI", href: "/tags/fastapi" }, "ASP.NET",
+	]},
+	{ name: "Databases", items: [
+		"PostgreSQL", "T-SQL", { text: "SQLite", href: "/tags/sqlite" }, "SQL optimization",
+	]},
+	{ name: "Cloud & Infra", items: [
+		"AWS (ECS, CloudWatch)", "Azure", { text: "Docker", href: "/tags/docker" }, "microservices",
+	]},
+	{ name: "DevOps", items: [
+		"Git", "CI/CD", "Jenkins", "Linux", "shell scripting",
+	]},
+	{ name: "AI & LLM", items: [
+		{ text: "Claude API", href: "/tags/claude" }, { text: "MCP servers", href: "/tags/mcp" },
+		"prompt engineering", "Voyage AI embeddings",
+	]},
+];
+---
+<div class="skills-grid">
+	{categories.map((cat) => (
+		<div class="skill-category">
+			<strong>{cat.name}</strong>
+			<span>{cat.items.map((item, i) => (
+				<>{i > 0 && ", "}{typeof item === "string" ? item : <a href={item.href}>{item.text}</a>}</>
+			))}</span>
+		</div>
+	))}
+</div>
+
+<style>
+	.skills-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: 0.75rem;
+		margin: 1rem 0;
+	}
+
+	.skill-category {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.skill-category span {
+		font-size: 0.9rem;
+	}
+</style>
