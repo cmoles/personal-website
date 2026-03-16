@@ -1,0 +1,46 @@
+---
+import { CollectionEntry, getCollection } from 'astro:content';
+import BlogPost from '../../layouts/MarkdownBlogLayout.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('projects');
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: post,
+	}));
+}
+type Props = CollectionEntry<'projects'>;
+
+const post = Astro.props;
+const { Content } = await post.render();
+
+const relatedPosts = (await getCollection('blog'))
+	.filter((p) => p.data.project === post.slug)
+	.filter((p) => !p.data.draft)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BlogPost {...post.data}>
+	<Content />
+	{relatedPosts.length > 0 && (
+		<div class="related-posts">
+			<h3>Blog Posts</h3>
+			<ul>
+				{relatedPosts.map((p) => (
+					<li><a href={`/blog/${p.slug}/`}>{p.data.title}</a></li>
+				))}
+			</ul>
+		</div>
+	)}
+</BlogPost>
+
+<style>
+	.related-posts {
+		margin-top: 2em;
+		padding-top: 1em;
+		border-top: 1px solid var(--border-color);
+	}
+	:global(.dark) .related-posts {
+		border-top-color: var(--border-color-dark);
+	}
+</style>

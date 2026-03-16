@@ -18,10 +18,6 @@ const { title, description, pubDate, tags, heroImage } = Astro.props;
 	<slot />
 </BaseLayout>
 <style>
-	a {
-		color: #00539F;
-	}
-
 	.tags {
 		display: flex;
 		flex-wrap: wrap;
@@ -30,10 +26,15 @@ const { title, description, pubDate, tags, heroImage } = Astro.props;
 
 	.tag {
 		margin: 0.25em;
-		border: dotted 1px #a1a1a1;
+		border: dotted 1px var(--tag-border);
 		border-radius: .5em;
 		padding: .5em 1em;
 		font-size: 1.15em;
-		background-color: #F8FCFD;
+		background-color: var(--tag-bg);
+	}
+
+	:global(.dark) .tag {
+		background-color: var(--tag-bg-dark);
+		border-color: var(--tag-border-dark);
 	}
 </style>

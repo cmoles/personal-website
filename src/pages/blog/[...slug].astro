@@ -4,17 +4,44 @@ import BlogPost from '../../layouts/MarkdownBlogLayout.astro';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
+	const projects = await getCollection('projects');
 	return posts.map((post) => ({
 		params: { slug: post.slug },
-		props: post,
+		props: {
+			post,
+			project: post.data.project
+				? projects.find((p) => p.slug === post.data.project)
+				: undefined,
+		},
 	}));
 }
-type Props = CollectionEntry<'blog'>;
 
-const post = Astro.props;
+const { post, project } = Astro.props;
 const { Content } = await post.render();
 ---
 
 <BlogPost {...post.data}>
+	{project && (
+		<div class="project-link">
+			Part of the <a href={`/projects/${project.slug}/`}>{project.data.title}</a> project
+		</div>
+	)}
 	<Content />
 </BlogPost>
+
+<style>
+	.project-link {
+		margin-bottom: 1.5em;
+		padding: 0.5em 0.75em;
+		background-color: var(--surface-bg);
+		border-left: 3px solid var(--link-color);
+		border-radius: 0 4px 4px 0;
+	}
+	.project-link a {
+		font-weight: 600;
+	}
+	:global(.dark) .project-link {
+		background-color: var(--surface-bg-dark);
+		border-left-color: var(--link-color-dark);
+	}
+</style>

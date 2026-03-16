@@ -1,12 +1,10 @@
 import { defineCollection, z } from 'astro:content';
 
-const ai = defineCollection({
-	// Type-check frontmatter using a schema
+const projects = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
 		draft: z.boolean().optional(),
-		// Transform string to Date object
 		pubDate: z
 			.string()
 			.or(z.date())
@@ -19,6 +17,8 @@ const ai = defineCollection({
 			.transform((str) => (str ? new Date(str+'PST') : undefined)),
 		heroImage: z.string().optional(),
 		tags: z.array(z.string()).optional(),
+		github: z.string().optional(),
+		status: z.enum(['active', 'completed', 'archived']).optional(),
 	}),
 });
 
@@ -41,6 +41,7 @@ const blog = defineCollection({
 			.transform((str) => (str ? new Date(str+'PST') : undefined)),
 		heroImage: z.string().optional(),
 		tags: z.array(z.string()).optional(),
+		project: z.string().optional(),
 	}),
 });
 
@@ -88,4 +89,4 @@ const web = defineCollection({
 	}),
 });
 
-export const collections = { ai, blog, games, web };
+export const collections = { projects, blog, games, web };

@@ -4,6 +4,7 @@ pubDate: "2025-10-01"
 description: "AI-powered resume and cover letter customization with DOCX generation."
 author: "Chris Moles"
 tags: ["python", "fastapi", "sqlite", "claude", "ai"]
+project: "resume-tailor"
 ---
 
 ### The Resume Problem

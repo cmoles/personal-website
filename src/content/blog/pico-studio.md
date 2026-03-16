@@ -4,6 +4,7 @@ pubDate: "2025-12-01"
 description: "Browser-based IDE for Pico-8 game development powered by AI chat interactions."
 author: "Chris Moles"
 tags: ["react", "typescript", "python", "fastapi", "docker", "mcp", "claude"]
+project: "pico-studio"
 ---
 
 ### From Fantasy Console to Fantasy IDE

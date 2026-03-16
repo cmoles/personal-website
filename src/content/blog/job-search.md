@@ -4,6 +4,7 @@ pubDate: "2025-11-01"
 description: "LinkedIn job collector with AI-powered analysis, semantic search, and intelligent scoring."
 author: "Chris Moles"
 tags: ["python", "fastapi", "htmx", "sqlite", "claude", "ai"]
+project: "job-search-tool"
 ---
 
 ### The Problem with Job Hunting

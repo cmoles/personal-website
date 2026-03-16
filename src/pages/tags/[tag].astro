@@ -5,14 +5,14 @@ import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
 	const allBlogPosts = await getCollection('blog');
-	const allAIPosts = await getCollection('ai');
+	const allProjectPosts = await getCollection('projects');
 	const allWebPosts = await getCollection('web');
 	const allGamePosts = await getCollection('games');
 	const uniqueTags = [...new Set([
 	...allBlogPosts
 	.filter((post) => post.data.tags?.length > 0)
 	.map((post) => post.data.tags)?.flat(),
-	...allAIPosts
+	...allProjectPosts
 	.filter((post) => post.data.tags?.length > 0)
 	.map((post) => post.data.tags)?.flat(),
 	...allWebPosts
@@ -28,7 +28,7 @@ export async function getStaticPaths() {
 		.filter((post) => post.data.tags?.length > 0)
 		.filter((post) => !post.data.draft)
 		.filter((post) => post.data.tags?.includes(tag));
-		const filteredAIPosts = allAIPosts
+		const filteredProjectPosts = allProjectPosts
 		.filter((post) => post.data.tags?.length > 0)
 		.filter((post) => !post.data.draft)
 		.filter((post) => post.data.tags?.includes(tag));
@@ -42,7 +42,7 @@ export async function getStaticPaths() {
 			params: { tag },
 			props: { posts: {
 				blogPosts: filteredBlogPosts,
-				aiPosts: filteredAIPosts,
+				projectPosts: filteredProjectPosts,
 				webPosts: filteredWebPosts,
 				gamePosts: filteredGamePosts
 			} },
@@ -52,7 +52,7 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
-const { blogPosts, aiPosts, webPosts, gamePosts } = posts;
+const { blogPosts, projectPosts, webPosts, gamePosts } = posts;
 ---
 <BaseLayout pageTitle={tag}>
   <p>Posts tagged with {tag}</p>
@@ -63,10 +63,10 @@ const { blogPosts, aiPosts, webPosts, gamePosts } = posts;
 	  .map((post:any) => <BlogPost url={`/blog/${post.slug}/`} title={post.data.title}
 		pubDate={post.data.pubDate}
 		updatedDate={post.data.updatedDate} />)}
-	  {aiPosts.length > 0 && <h2>AI</h2>}
-	  {aiPosts
+	  {projectPosts.length > 0 && <h2>Projects</h2>}
+	  {projectPosts
 	  .sort((a:any, b:any) => b.data.pubDate - a.data.pubDate)
-	  .map((post:any) => <BlogPost url={`/ai/${post.slug}/`} title={post.data.title}
+	  .map((post:any) => <BlogPost url={`/projects/${post.slug}/`} title={post.data.title}
 		pubDate={post.data.pubDate}
 		updatedDate={post.data.updatedDate} />)}
 	  {webPosts.length > 0 && <h2>Web</h2>}

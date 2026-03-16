@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const pageTitle = "Projects";
+const posts = (await getCollection('projects'))
+	.filter((post) => !post.data.draft)
+	.sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+<BaseLayout pageTitle={pageTitle}>
+	<main>
+		<p>Tools and applications I've built, mostly focused on AI integration and developer tooling.</p>
+		{posts.map((post) =>
+			<ProjectCard
+			url={`/projects/${post.slug}/`}
+			title={post.data.title}
+			description={post.data.description}
+			tags={post.data.tags}
+			status={post.data.status}
+			pubDate={post.data.pubDate}
+			/>
+		)}
+	</main>
+</BaseLayout>

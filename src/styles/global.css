@@ -11,6 +11,23 @@ html {
 
 	--accent-color: #bcc0cc;
 
+	--border-color: #b0b0b0;
+	--border-color-dark: #888;
+	--link-color: #00539F;
+	--link-color-dark: #6db3f2;
+	--muted-text: #444;
+	--muted-text-dark: #ccc;
+	--subtle-text: #888;
+	--subtle-text-dark: #999;
+	--tag-bg: #F8FCFD;
+	--tag-bg-dark: #2a3a4a;
+	--tag-border: #a1a1a1;
+	--tag-border-dark: #556;
+	--tag-hover-bg: #e8f0fe;
+	--tag-hover-bg-dark: #344a5e;
+	--surface-bg: #f0f7ff;
+	--surface-bg-dark: #1a2a3a;
+
 	background-color: var(--background-color);
 	font-family: sans-serif;
 	color: var(--primary-color);
@@ -33,6 +50,15 @@ body {
 h1 {
 	margin: 1rem 0;
 	font-size: 2.5rem;
+}
+
+hr {
+	border: none;
+	border-top: 1px solid var(--border-color);
+}
+
+.dark hr {
+	border-top-color: var(--border-color-dark);
 }
 
 html.dark {
